@@ -6,7 +6,10 @@ import { validate } from './utils/validators';
 
 const useStyles = makeStyles({
     root: {
-        margin: 'auto'
+        margin: '10px 0px 20px 0'
+    },
+    textField: {
+        width: '100%'
     }
 })
 
@@ -34,9 +37,9 @@ const Input = props => {
     const classes = useStyles();
 
     const [inputState, dispatch] = useReducer(inputReducer, {
-        value: '',
+        value: props.value || '',
         isTouched: false,
-        isValid: false
+        isValid: props.valid || false
     });
 
     const { id, onInput } = props;
@@ -80,30 +83,37 @@ const Input = props => {
     //             />
     //         );
 
+    
+    // console.log(inputState);
     const element =
         props.element === 'input' ? (
             <TextField
                 id={props.id}
+                className={classes.textField}
                 type={props.type}
                 label={props.label}
-                placeholder={props.placeholder}
+                variant="outlined"
+                // placeholder={props.value}
                 onChange={changeHandler}
                 onBlur={touchHandler}
                 value={inputState.value}
                 error={!inputState.isValid && inputState.isTouched && true}
-                helperText={!inputState.isValid && inputState.isTouched && <p>{props.errorText}</p>}
+                helperText={!inputState.isValid && inputState.isTouched && props.errorText}
             />
         ) : (
                 <TextField
                     id={props.id}
+                    className={classes.textField}
                     label={props.label}
+                    variant="outlined"
                     multiline
                     rows={props.rows || 3}
+                    // placeholder={props.value}
                     onChange={changeHandler}
                     onBlur={touchHandler}
                     value={inputState.value}
                     error={!inputState.isValid && inputState.isTouched && true}
-                    helperText={!inputState.isValid && inputState.isTouched && <p>{props.errorText}</p>}
+                    helperText={!inputState.isValid && inputState.isTouched && props.errorText}
                 />
             );
 

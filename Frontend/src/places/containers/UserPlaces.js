@@ -17,8 +17,8 @@ const DUMMY_PLACES = [
     },
     {
         id: 'p2',
-        title: 'Empire State Building',
-        description: 'One of the most famous skyscrapper in the world',
+        title: 'Empire State Building 2',
+        description: 'One of the most famous skyscrapper in the world 2',
         image: 'https://www.fcbarcelona.com/fcbarcelona/photo/2018/08/24/406a0759-4719-4b5d-b3e4-6bf36632b8ef/LFGcLkki.jpg',
         address: '20 W 34th St, New York, NY 10001',
         location: {
@@ -27,8 +27,6 @@ const DUMMY_PLACES = [
         },
         creator: 'u2'
     },
-
-
 ]
 
 const UserPlaces = () => {

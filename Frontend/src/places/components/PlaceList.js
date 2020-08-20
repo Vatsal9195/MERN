@@ -1,14 +1,19 @@
-import { Button } from '@material-ui/core';
+import { Button, Paper } from '@material-ui/core';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PlaceItem from './PlaceItem';
 
 const PlaceList = props => {
 
     if (props.items.length === 0)
-        return <div className="center">
-            <h2>No Record Found. May be Create one?</h2>
-            <Button varient="inherit">Share Place</Button>
-        </div>
+        return <Paper elevation={3} style={{ width: '50%', margin: 'auto', marginTop: '20px', padding: '10px' }}>
+            <div className="center">
+                <h2>No Record Found. May be Create one?</h2>
+                <Link to="/places/new" style={{ textDecoration: 'none' }}>
+                    <Button variant="contained" color="secondary"> Share Place</Button>
+                </Link>
+            </div>
+        </Paper>
 
     return (
         <ul style={{ listStyleType: 'none' }}>
