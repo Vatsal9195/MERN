@@ -53,7 +53,7 @@ const NavBar = props => {
                     </Typography>
                     <NavLink to="/auth" exact style={{ textDecoration: 'none', color: 'white' }}>
                         {auth.isLoggedIn ? (
-                            <Button color="inherit" >Logout</Button>) :
+                            <Button color="inherit" onClick={auth.logout} >Logout</Button>) :
                             <Button color="inherit" >Login</Button>}
                     </NavLink>
                 </Toolbar>
