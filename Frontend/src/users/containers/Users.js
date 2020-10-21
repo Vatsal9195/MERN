@@ -1,19 +1,42 @@
-import React from 'react';
+import { CircularProgress } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
 import UsersList from '../components/UsersList';
-
-const USERS = [
-    {
-        id: 'u1',
-        name: 'John Doe',
-        image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
-        places: 3
-    }
-]
 
 const Users = () => {
 
+    const [isLoading, setisLoading] = useState(false);
+    const [error, seterror] = useState();
+    const [user, setUser] = useState();
 
-    return <UsersList items={USERS} />
+    useEffect(() => {
+        const sendRequest = async () => {
+            console.log('effect');
+            setisLoading(true);
+            try {
+                const response = await fetch('http://localhost:5000/api/users/')
+
+                const responseData = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(responseData.message)
+                }
+
+                setUser(responseData);
+            } catch (err) {
+                seterror(err.message);
+                console.log(err);
+            }
+            setisLoading(false);
+        }
+        sendRequest();
+    }, []);
+
+    return (
+        <React.Fragment>
+            {isLoading && <CircularProgress />}
+            {!isLoading && user && <UsersList items={user.users} />}
+        </React.Fragment>
+    )
 };
 
 export default Users;

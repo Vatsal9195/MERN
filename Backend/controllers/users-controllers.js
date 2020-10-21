@@ -20,7 +20,7 @@ const getUsers = async (req, res, next) => {
 const signup = async (req, res, next) => {
     const error = validationResult(req);
     if (!error.isEmpty()) {
-        return next(new HttpError('Invalid Input, please enter valid input', 422));
+        return next(new HttpError('Invalid Input, please enter valid EmailID or Password', 422));
     }
 
     const { name, email, password } = req.body;
